@@ -44,10 +44,15 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
     var getFeatured = function () {
       $http.get('/api/v1/featured', {cache: true})
         .then(function (resolved, rejected) {
-          console.log('resolved:::::::::\n', resolved);
+          //console.log('resolved:::::::::\n', resolved);
+              $scope.theFeatured = resolved.data;
+
+              console.log('Here is the Featured Data',$scope.theFeatured);
         });
     };
     getFeatured();
+
+
 
     $scope.overlayActive = true;
     $scope.menuOpen = false;

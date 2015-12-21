@@ -55,6 +55,22 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
       }
     };
 
+      /**
+       * Get Featured Array
+        */
+
+      $scope.getFeaturedArray = function() {
+
+          $http.get('/api/v1/featured')
+          .then(function(err, data){
+                  if (err){
+                      throw err;
+                  } else {
+                      $scope.featuredStory = data;
+                  }
+              })
+      };
+
     $scope.confirmPublishModal = function () {
       $scope.animationsEnabled = true;
       $uibModal.open({
