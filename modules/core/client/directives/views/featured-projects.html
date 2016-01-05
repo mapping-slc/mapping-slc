@@ -6,48 +6,23 @@
             <h2>Featured Projects</h2>
         </div>
 
-        <p>{{theFeatured}}</p>
-        <!--<div class="row">-->
-            <!--<ul class="grid cs-style-4 col-md-4 col-sm-4">-->
-                <!--<figure>-->
-                    <!--<a href="/shaw">-->
-                        <!--<div>-->
-                            <!--<img ng-src="modules/core/client/img/{{photo1}}" class="desaturate">-->
-                        <!--</div>-->
-                    <!--</a>-->
-                    <!--<figcaption>-->
-                        <!--<a href="/shaw"><span>Andrew Shaw</span></a>-->
-                    <!--</figcaption>-->
-                <!--</figure>-->
-            <!--</ul>-->
+        <!--<p>{{theFeatured}}</p>-->
+        <div class="row" >
+            <div class="grid cs-style-4 col-md-4 col-sm-4" ng-repeat="feature in theFeatured | limitTo: 3">
+                <figure>
+                    <a href="/projects/{{feature.id}}">
+                        <div>
+                            <h5>{{feature.title}}</h5>
+                            <img ng-src="{{feature.mainImage}}" class="desaturate" />
+                        </div>
+                    </a>
+                    <figcaption>
+                        <a href="/projects/{{feature.id}}"><span>{{feature.id}}</span></a>
+                    </figcaption>
+                </figure>
+            </div>
 
-
-            <!--<ul class=" grid cs-style-4 col-md-4 col-sm-4">-->
-                <!--<figure>-->
-                    <!--<a href="/westside-leadership-institute">-->
-                        <!--<div>-->
-                            <!--<img ng-src="modules/core/client/img/{{photo2}}" class="sepia">-->
-                        <!--</div>-->
-                    <!--</a>-->
-                    <!--<figcaption>-->
-                        <!--<a href="/westside-leadership-institute"><span>Westside Leadership</span></a>-->
-                    <!--</figcaption>-->
-                <!--</figure>-->
-            <!--</ul>-->
-
-            <!--<ul class="grid cs-style-4 col-md-4 col-sm-4">-->
-                <!--<figure>-->
-                    <!--<a href="#">-->
-                        <!--<div>-->
-                            <!--<img id="photo-3" ng-src="modules/core/client/img/{{photo3}}" class="desaturate">-->
-                        <!--</div>-->
-                    <!--</a>-->
-                    <!--<figcaption>-->
-                        <!--<a href="/westside-leadership-institute"><span>David Williams</span></a>-->
-                    <!--</figcaption>-->
-                <!--</figure>-->
-            <!--</ul>-->
-        <!--</div>-->
+        </div>
 
     </div>
 
