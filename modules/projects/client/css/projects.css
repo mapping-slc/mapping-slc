@@ -274,4 +274,10 @@ project-status-user-info edit-profile .form-group {
     margin: 6px 4px 6px 0;
 }
 
+h5 {
+    color: #FFFFFF;
+}
+a > h5:hover {
+    text-decoration: none;
+}
 

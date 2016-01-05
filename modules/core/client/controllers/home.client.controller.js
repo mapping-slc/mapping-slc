@@ -30,7 +30,19 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
     $scope.projectMarker = null;
     $scope.markerData = null;
 
+      /**
+       * Get Feature Stories for front end
+       */
 
+      var getFeatured = function () {
+          $http.get('/api/v1/featured')
+              .then(function (resolved, rejected) {
+                  $scope.theFeatured = resolved.data;
+                  console.log($scope.theFeatured);
+
+              });
+      };
+      getFeatured();
 
     /**
      *
