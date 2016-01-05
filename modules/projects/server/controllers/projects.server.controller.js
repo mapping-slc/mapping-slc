@@ -305,10 +305,12 @@ exports.getFeaturedProjects = function (req, res) {
   Project.find({featured: true})
     .exec(function (err, projects) {
       if (err) {
+          console.log('HERE is the ERR: ', err);
         return res.status(400).send({
           message: errorHandler.getErrorMessage(err)
         });
       } else {
+          console.log('these are the fetured: ', projects);
         res.jsonp(projects);
       }
     });

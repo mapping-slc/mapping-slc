@@ -35,9 +35,11 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
        */
 
       var getFeatured = function () {
-          $http.get('/api/v1/featured', {cache: true})
+          $http.get('/api/v1/featured')
               .then(function (resolved, rejected) {
                   $scope.theFeatured = resolved.data;
+                  console.log($scope.theFeatured);
+
               });
       };
       getFeatured();
