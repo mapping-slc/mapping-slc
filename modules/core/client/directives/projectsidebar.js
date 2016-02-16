@@ -11,8 +11,7 @@ angular.module('core').directive('projectSideBar', function () {
       $scope.hideSidebar = function () {
         $scope.toggleSidebar = false;
         $scope.shadeMap = true;
-        jQuery('.leaflet-top.leaflet-right').css('right','0');
-        jQuery('.menu-ui').css('right','1.5%');
+
       };
       $scope.$on('MenuService.update',function(){
         $scope.hideSidebar();
@@ -22,13 +21,10 @@ angular.module('core').directive('projectSideBar', function () {
           $scope.project = projectData;
           $scope.toggleSidebar = true;
           currentMarkerId = markerId;
-          //jQuery('.leaflet-top.leaflet-right').css('right','25%');
-          //jQuery('.menu-ui').css('right','27%');
 
         } else {
           $scope.toggleSidebar = false;
-          jQuery('.leaflet-top.leaflet-right').css('right','0');
-          jQuery('.menu-ui').css('right','1.5%');
+
         }
       };
 
