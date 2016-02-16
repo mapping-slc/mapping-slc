@@ -1,6 +1,6 @@
 <!--<div class="project-sidebar" data-ng-show="toggleSidebar" data-ng-class="{'project-sidebar-toggle':  toggleSidebar}">-->
 
-<div data-ng-show="toggleSidebar" data-ng-class="{'project-sidebar':  toggleSidebar}">
+<div  data-ng-class="{'project-sidebar':  toggleSidebar, 'close-sidebar': !toggleSidebar}">
   <div class="row">
     <i class="fa fa-chevron-right project-close" ng-click="hideSidebar()"></i>
     <h3>{{project.title}}</h3>
