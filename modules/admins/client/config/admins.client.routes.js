@@ -36,6 +36,8 @@ angular.module('admins').config(['$stateProvider',
     .state('admin.adminEditProject', {
       url: '/edit-project/:projectId',
       templateUrl: 'modules/admins/client/views/projects/admin-view-project.client.view.html',
+      // controller: 'AuthenticationController',
+      controllerAs: 'vm',
       data: {
         pageTitle: 'Admin | Edit Project'
       }

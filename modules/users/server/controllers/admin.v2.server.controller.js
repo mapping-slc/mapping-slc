@@ -12,14 +12,13 @@ const User = mongoose.model('User');
 const Project = mongoose.model('Project');
 
 /**
- * Patch Update a User Fields
+ * Patch Update User Fields
  */
 exports.patchUser = (req, res) => {
-  const user = _.extend({}, req.model, req.body);
-
-  user.save()
-  .then(user => {
-    res.jsonp(user);
+  _.extend(req.model, req.body)
+  .save()
+  .then(updatedUser => {
+    res.jsonp(updatedUser);
   })
   .catch(err => {
     console.error('ERROR on patch update for user `err`:\n', err);

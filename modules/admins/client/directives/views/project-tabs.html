@@ -1,14 +1,14 @@
-<div ng-cloak="">
+<form name="admin-panel-project" class="form-horizontal" data-ng-submit="updateProject(project.$valid, toggleId)" ng-cloak="" novalidate>
   <md-content>
     <md-tabs md-dynamic-height="" md-border-bottom="">
 
-      <md-tab label="Main Content" md-active="true">
+      <md-tab label="Main Content">
         <md-content class="md-padding">
           <project-main-tab></project-main-tab>
         </md-content>
       </md-tab>
 
-      <md-tab label="Admin">
+      <md-tab label="Admin" md-active="true">
         <md-content class="md-padding">
           <project-admin-features></project-admin-features>
         </md-content>
@@ -49,4 +49,4 @@
     </md-tabs>
   </md-content>
 
-</div>
+</form>

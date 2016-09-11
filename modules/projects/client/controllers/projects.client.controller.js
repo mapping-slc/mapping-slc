@@ -41,52 +41,6 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
     };
 
 
-    /**
-     * called when $scope.project.status updates
-     */
-    $scope.projectStatusChanged = function () {
-      if ($scope.project.status === 'published') {
-        $scope.publishProject();
-      } else {
-        $scope.updateProject();
-      }
-      $scope.toggleEdit = false;
-    };
-
-    // todo: refactor to admin panel for projects
-    // $scope.confirmPublishModal = function () {
-    //   $scope.animationsEnabled = true;
-    //   $uibModal.open({
-    //     animation: $scope.animationsEnabled,
-    //     templateUrl: '/modules/projects/client/directives/views/project-warning-modal.html',
-    //     controller: 'ModalController',
-    //     size: 'lg'
-    //   });
-    // };
-
-    // todo: refactor to admin panel for users
-    var publishUser = function (project) {
-      console.log('publishUser ::::  project.user._id:: ', project.user._id);
-      AdminUpdateUser.get({ userId: project.user._id },
-        function (userData) {
-          if (userData.roles[0] !== 'admin' || userData.roles[0] !== 'superUser' && project.status === 'published') {
-            userData.roles[0] = 'contributor';
-          }
-          userData.associatedProjects.push(project._id);
-          userData.$update(function (userData, putResponseHeaders) {
-          });
-        });
-    };
-
-    // todo: refactor to admin panel for projects
-    $scope.publishProject = function () {
-      //todo need to call on a confirm modal first
-      // confirmModalService.showConfirm();
-      $scope.project.publishedDate = new Date();
-      $scope.updateProject();
-      //publishUser($scope.project); //call method to display contributor bio
-    };
-
     var saveProject = null;
     $scope.updateLatLng = function (project) {
       $http.get('/api/v1/keys')
@@ -170,61 +124,26 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
 
 
     // Remove existing Project
+    // todo remove fn commented-out until i've added a mdDialog warning to confirm
     $scope.remove = function (project) {
-      if (project) {
-        project.$remove();
-
-        for (var i in $scope.projects) {
-          if ($scope.projects [i] === project) {
-            $scope.projects.splice(i, 1);
-          }
-        }
-      } else {
-        $scope.project.$remove(function () {
-          if ($location.path() === '/admin/edit-project/' + $scope.project._id) {
-            $location.path('admin/projects-queue');
-          } else {
-            $location.path('projects');
-          }
-        });
-      }
+      // if (project) {
+      //   project.$remove();
+      //
+      //   for (var i in $scope.projects) {
+      //     if ($scope.projects [i] === project) {
+      //       $scope.projects.splice(i, 1);
+      //     }
+      //   }
+      // } else {
+      //   $scope.project.$remove(function () {
+      //     if ($location.path() === '/admin/edit-project/' + $scope.project._id) {
+      //       $location.path('admin/projects-queue');
+      //     } else {
+      //       $location.path('projects');
+      //     }
+      //   });
+      // }
     };
-
-
-    /**
-     *
-     *  Update an existing Project
-     *
-     */
-    $scope.updateProject = function (isValid, toggleId) {
-      var project = $scope.project;
-      console.log('update 22222:::: project', project);
-      project.$update(function (response) {
-        console.log('return from $scope.updateProject() `response`', response);
-        if (response.$resolved) {
-          if ($location.path() === '/admin/edit-project/' + project._id) {
-            $location.path('/admin/edit-project/' + project._id);
-            $scope.toggleEditFn(0);
-          } else {
-            $location.path('projects/' + project._id);
-            $scope.toggleEditFn(0);
-          }
-          // todo refactor to use ng-message
-          notify({
-            message: 'Project updated successfully',
-            classes: 'ng-notify-contact-success'
-          })
-        } else {
-          notify({
-            message: 'Something went wrong, and we didn\'t receive your message. We apologize.',
-            classes: 'ng-notify-contact-failure'
-          })
-        }
-      }, function (errorResponse) {
-        $scope.error = errorResponse.data.message;
-      });
-    };
-
 
 
     /**
@@ -270,11 +189,6 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
           }
           getUserFavoriteStoriesFn($scope.project.user.favorites, $scope.project.id);
         });
-
-    };
-
-    $scope.goToProject = function(projectId) {
-      console.log('here! | projectId: ', projectId);
     };
 
 
@@ -340,50 +254,23 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
       );
     };
 
-    $scope.toggleFavProjectFn = function () {
-      userFavoritesService.toggleFavProject($scope.isFavorite, $scope.project,
-        function (err, data) {
-          $scope.isFavorite = data;
-        });
-    };
+    // refactored - code now in use at
+    // $scope.toggleFavProjectFn = function () {
+    //   userFavoritesService.toggleFavProject($scope.isFavorite, $scope.project,
+    //     function (err, data) {
+    //       $scope.isFavorite = data;
+    //     });
+    // };
 
 
-    $scope.toggleEdit = false;
-    $scope.toggleId = 0;
-
-    $scope.toggleEditAdminPanel = function (editNum, isEdit, originalData) {
-
-    };
-    /**
-     * admin panel editing
-     */
-
-    $scope.toggleEdit = false;
-    $scope.toggleId = 0;
-
-    $scope.toggleEditFn = function (editNum, isEdit, originalData) {
-      if(isEdit === 'edit') {
-      }
-      if(isEdit === 'cancel') {
-        $scope.project.story = originalData;
-      }
-      $scope.toggleEdit = !$scope.toggleEdit;
-      $scope.toggleId = editNum;
-    };
+    // $scope.toggleEdit = false;
+    // $scope.toggleId = 0;
+    //
+    // $scope.toggleEditAdminPanel = function (editNum, isEdit, originalData) {
+    //
+    // };
 
 
-    $scope.predicate = 'title';
-    $scope.reverse = true;
-    $scope.order = function (predicate) {
-      $scope.reverse = ($scope.predicate === predicate) ? !$scope.reverse : false;
-      $scope.predicate = predicate;
-    };
-
-
-
-    $scope.showMap = function () {
-      UtilsService.showMap();
-    };
 
 
   }

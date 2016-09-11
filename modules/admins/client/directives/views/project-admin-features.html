@@ -1,32 +1,30 @@
-<div data-ng-show="toggleEdit" layout="column">
+<div data-ng-show="toggleEdit" layout="column" class="project-admin-features">
 
   <md-input-container flex="" layout="" layout-align="">
-    <label>Project Status</label>
-
-    <md-select id="status" data-ng-model="project.status" data-ng-change="projectStatusChanged()">
-      <md-optgroup label="Project Status">
-        <md-option ng-value="statusSort.status.value" ng-repeat="statusSort in statusSorts">
-          {{statusSort.status.name}}
+    <label>Status: {{project.status[0] | toCapitalCase}}</label>
+    <md-select id="status" data-ng-model="project.status" ng-model-options="{trackBy: '$value.value'}" data-ng-change="projectStatusChanged()" md-container-class="admin-select">
+        <md-option ng-value="status" ng-repeat="status in statusSorts">
+          {{status.name}}
         </md-option>
-      </md-optgroup>
     </md-select>
-
   </md-input-container>
 
+
   <md-input-container flex="" layout="" layout-align="">
-    <label>Project Category</label>
-    <md-select id="category" data-ng-model="project.category">
+    <label>Category</label>
+    <md-select data-ng-model="project.category" id="category">
       <md-optgroup label="Project Category">
-        <md-option ng-value="categorySort.category.value" ng-repeat="categorySort in adminCategorySorts">
-          {{categorySort.category.name}}
+        <md-option ng-value="categorySort.value" ng-repeat="categorySort in adminCategorySorts">
+          {{categorySort.name}}
         </md-option>
       </md-optgroup>
     </md-select>
   </md-input-container>
 
-  <md-input-container flex="" layout="" layout-align="">
-    <label>Featured Project</label>
-    <md-switch ng-model="project.featured" aria-label="Featured Project" ng-true-value="'featuredProject.featuredProject.value'" ng-false-value="'featuredProject.featuredProject.value'" data-ng-change="updateFeatured()">
+
+  <md-input-container flex="" layout="" layout-align="" data-ng-show="project.status[0]==='published'">
+    <label>Featured</label>
+    <md-switch ng-model="project.featured" name="admin-panel-project" aria-label="Featured Project" data-ng-change="updateFeatured()">{{projectFeaturedName}}
     </md-switch>
   </md-input-container>
 
@@ -35,22 +33,23 @@
 
 <div layout="column" data-ng-show="!toggleEdit">
   <div layout="" layout-align="">
-    <div flex="">Project Status</div>
-    <div flex="">{{statusFiltered}}</div>
+    <div flex="">Status</div>
+    <div flex="">{{project.status[0] | toCapitalCase}}</div>
   </div>
 
   <div layout="" layout-align="">
-    <div flex="">Project Category</div>
-    <div flex="" data-ng-bind="project.category"></div>
+    <div flex="">Category</div>
+    <div flex="">{{project.category[0] | toCapitalCase}}</div>
   </div>
 
-  <div layout="" layout-align="">
-    <div flex="">Featured Project</div>
-    <div flex="" data-ng-bind="project.featured"></div>
+  <div layout="" layout-align="" data-ng-show="project.status[0]==='published'">
+    <div flex="">Featured</div>
+    <div flex="" data-ng-bind="projectFeaturedName"></div>
   </div>
 </div>
 
 <hr/>
+
 <div layout="column" layout-align="" >
   <h4>Current Featured Projects</h4>
   <div data-ng-repeat="featuredProject in featuredProjects track by $index">

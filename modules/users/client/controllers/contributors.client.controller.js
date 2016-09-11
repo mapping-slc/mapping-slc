@@ -36,7 +36,7 @@ angular.module('users')
     };
 
     var getAssociatedProjects = function (userId) {
-      $http.get(`/api/v1/contributors/${userId}/projects?publishedOnly=true`)
+      $http.get('/api/v1/contributors/' + userId + '/projects?publishedOnly=true')
       .then(function successCb(projects) {
         $scope.contributorProjects = projects.data;
       }, function errorCb(errorData) {
@@ -57,7 +57,7 @@ angular.module('users')
 
 
     $scope.findContributor = function () {
-      $http.get(`/api/v1/contributors/${$stateParams.userId}`)
+      $http.get('/api/v1/contributors/' + $stateParams.userId)
       .then(function (userData) {
         getAssociatedProjects(userData.data._id);
         $scope.contributor = userData.data;

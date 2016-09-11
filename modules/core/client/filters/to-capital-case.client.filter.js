@@ -5,12 +5,11 @@
     .module('core')
     .filter('toCapitalCase', toCapitalCase);
 
-  toCapitalCase.$inject = [/*Example: '$state', '$window' */];
+  toCapitalCase.$inject = [];
 
-  function toCapitalCase(/*Example: $state, $window */) {
-    return function () {
-      return this.charAt(0).toUpperCase() + this.slice(1);
-      // return 'toCapitalCase filter: ' + input;
-    };
+  function toCapitalCase() {
+    return function(input) {
+      return (!!input) ? input.charAt(0).toUpperCase() + input.substr(1).toLowerCase() : '';
+    }
   }
 })();

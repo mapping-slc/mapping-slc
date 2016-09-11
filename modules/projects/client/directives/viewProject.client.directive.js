@@ -26,7 +26,15 @@
 
     function controller($scope, Lightbox) {
       $scope.findOne();
-      this.$onInit = function() { };
+      this.$onInit = function () {
+      };
+
+      $scope.toggleFavProjectFn = function () {
+        userFavoritesService.toggleFavProject($scope.isFavorite, $scope.project,
+            function (err, data) {
+              $scope.isFavorite = data;
+            });
+      };
 
 
       /**

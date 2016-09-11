@@ -24,7 +24,7 @@
 
     return directive;
 
-    function controller($scope, $http, Authentication, localStorageService) {
+    function controller($scope, $http, Authentication, localStorageService, UtilsService) {
       var ts0 = window.performance.now();
 
       this.$onInit = function () {
@@ -66,6 +66,10 @@
         }, function (err) {
           console.error('list-projects error:\n', err);
         });
+      };
+
+      $scope.showMap = function () {
+        UtilsService.showMap();
       };
 
       // $scope.toggleBookmarkProject = function () {

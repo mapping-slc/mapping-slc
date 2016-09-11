@@ -4,18 +4,18 @@
  * Module dependencies
  */
 const path = require('path'),
-  mongoose = require('mongoose'),
-  errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
-  _ = require('lodash'),
-  admin = require('./admin.server.controller.js'),
-  auth = require('./users/users.authentication.server.controller.js');
+    mongoose = require('mongoose'),
+    errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
+    _ = require('lodash'),
+    admin = require('./admin.server.controller.js'),
+    auth = require('./users/users.authentication.server.controller.js');
 
 mongoose.Promise = Promise;
-const User = mongoose.model('User'),
-  TempUser = mongoose.model('TempUser');
+const User = mongoose.model('User');
+const TempUser = mongoose.model('TempUser');
 
 
-  /**
+/**
  * Show the current user
  */
 exports.getUser = function (req, res) {
@@ -83,23 +83,23 @@ exports.updateUser = function (req, res) {
  */
 exports.addNewsletter = function (req, res, next) {
 
-  User.findOne({ email: req.query.email })
-    //.select('newsletter firstName lastName email ModifiedOn')
-    .exec(function (err, userData) {
+  User.findOne({email: req.query.email})
+  //.select('newsletter firstName lastName email ModifiedOn')
+  .exec(function (err, userData) {
 
-      if (err === null && userData === null) {
-        //email does not exist. create a new user
-        var newUserObject = {
-          body: {
-            email: req.query.email,
-            username: req.query.email,
-            firstName: '',
-            lastName: '',
-            newsletter: true,
-            role: 'registered'
-          }
-        };
-        auth.signup(newUserObject,
+    if (err === null && userData === null) {
+      //email does not exist. create a new user
+      var newUserObject = {
+        body: {
+          email: req.query.email,
+          username: req.query.email,
+          firstName: '',
+          lastName: '',
+          newsletter: true,
+          role: 'registered'
+        }
+      };
+      auth.signup(newUserObject,
           function (createResponse) {
             console.log('createResponse:\n', createResponse);
             createResponse.subscribed = true;
@@ -107,20 +107,20 @@ exports.addNewsletter = function (req, res, next) {
             res.jsonp([createResponse]);
           });
 
-      } else if (!userData.newsletter) {
-        console.log('userData: (response from email query):\n', userData);
+    } else if (!userData.newsletter) {
+      console.log('userData: (response from email query):\n', userData);
 
-        var updateUserObject = {
-          body: userData
-        };
-        updateUserObject.body.newsletter = true;
-        updateUserObject.body.modified = {
-          modifiedBy: userData.id,
-          modifiedAt: Date.now()
-        };
+      var updateUserObject = {
+        body: userData
+      };
+      updateUserObject.body.newsletter = true;
+      updateUserObject.body.modified = {
+        modifiedBy: userData.id,
+        modifiedAt: Date.now()
+      };
 
 
-        admin.update(updateUserObject,
+      admin.update(updateUserObject,
           function (updateResponse) {
             console.log('updateResponse:\n', updateResponse);
             updateResponse.subscribed = true;
@@ -128,12 +128,12 @@ exports.addNewsletter = function (req, res, next) {
             res.jsonp([updateResponse]);
           });
 
-      } else {
-        //email address is already receiving the newsletter
-        //send back message to front end
-        res.jsonp([{ subscribed: true, message: 'email is already subscribed to newsletter' }]);
-      }
-    });
+    } else {
+      //email address is already receiving the newsletter
+      //send back message to front end
+      res.jsonp([{subscribed: true, message: 'email is already subscribed to newsletter'}]);
+    }
+  });
 };
 
 
@@ -159,14 +159,14 @@ exports.deleteUser = function (req, res) {
  */
 exports.list = function (req, res) {
   User.find({}, '-salt -password').sort('-created').populate('user', 'displayName')
-    .exec(function (err, users) {
-      if (err) {
-        return res.status(400).send({
-          message: errorHandler.getErrorMessage(err)
-        });
-      }
-      res.json(users);
-    });
+  .exec(function (err, users) {
+    if (err) {
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    }
+    res.json(users);
+  });
 };
 
 
@@ -174,18 +174,19 @@ exports.list = function (req, res) {
  * Get list of Contributors
  */
 
-exports.getContributors = function (req, res) {
-  var query = User.find(req.query);
-  query.or([{ roles: 'contributor' }, { roles: 'admin' }])
-    .sort('-lastName')
-    .exec(function (err, users) {
-      if (err) {
-        return res.send(400, {
-          message: errorHandler.getErrorMessage(err)
-        });
-      }
-      res.jsonp(users);
+exports.getContributors = (req, res) => {
+  const query = User.find(req.query);
+  query.or([{roles: 'contributor'}, {roles: 'admin'}, {roles: 'superadmin'}])
+  .sort('-lastName')
+  .exec()
+  .then(contributors => {
+    return res.jsonp(contributors);
+  })
+  .catch(err => {
+    return res.status(400).status({
+      message: errorHandler.getErrorMessage(err)
     });
+  });
 };
 
 
@@ -309,17 +310,16 @@ exports.getContributorByUserId = (req, res) => {
 exports.findUsersBySource = function (req, res) {
 
   var sourceKey1 = req.source1.key,
-    sourceValue1 = req.source1.value;
+      sourceValue1 = req.source1.value;
 
   var queryObject = {
     sourceKey1: sourceValue1
   };
 
   User.find(queryObject)
-    .exec();
+  .exec();
 
 };
-
 
 
 /**

@@ -5,6 +5,7 @@ angular.module(ApplicationConfiguration.applicationModuleName, ApplicationConfig
 
 // Setting HTML5 Location Mode
 angular.module(ApplicationConfiguration.applicationModuleName)
+.constant('_', window._)
 .config(['$locationProvider', '$httpProvider', '$mdThemingProvider', '$mdIconProvider',
   function ($locationProvider, $httpProvider, $mdThemingProvider) {
 

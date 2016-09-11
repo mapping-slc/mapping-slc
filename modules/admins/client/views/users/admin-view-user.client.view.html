@@ -16,15 +16,11 @@
           <div class="admin-user">
 
             <div class="admin-nav">
-              <a class="btn btn-main grow" ui-sref="admin.dashboard">
-                Admin Home Page
-              </a>
-              <a class="btn btn-main grow" ui-sref="admin.adminListUsers">
-                Admin User Page
-              </a>
-              <a class="btn btn-main grow btn-warning pull-right" data-ng-click="remove()">
-                <i class="glyphicon glyphicon-trash"></i>
-              </a>
+
+              <md-button class="md-raised" aria-label="admin home page" ui-sref="admin.dashboard"><ng-md-icon icon="home"></ng-md-icon>Admin Home Page</md-button>
+              <md-button class="md-raised" aria-label="admin user page" ui-sref="admin.adminListUsers"><ng-md-icon icon="account_circle"></ng-md-icon>Admin User Page</md-button>
+              <md-button class="md-raised btn-warning" layout-align="end center" aria-label="delete user" data-ng-click="remove()"><ng-md-icon icon="delete_forever"></ng-md-icon></md-button>
+
             </div>
 
             <user-view-form-wrapper></user-view-form-wrapper>

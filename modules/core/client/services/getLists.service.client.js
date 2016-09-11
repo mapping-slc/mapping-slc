@@ -17,43 +17,40 @@
         });
       },
 
+      listPrefixes: function listPrefixes() {
+        return this.roles = ['', 'Mr.', 'Ms.', 'Dr.']
+        .map(function (prefix) {
+          return {userPrefix: prefix};
+        });
+      },
+
       listRoles: function listRoles() {
-        return this.roles = ['user', 'blocked', 'unregistered', 'registered', 'contributor', 'admin', 'superUser'].map(function (role) {
+        return this.roles = ['user', 'blocked', 'unregistered', 'registered', 'contributor', 'admin', 'superUser']
+        .map(function (role) {
           return {userRole: role};
         });
       },
 
       listStatuses: function listStatuses() {
         return this.statuses = [
-          { category: 'sortOrder', name: 'Received', value: 'received' },
-          { category: 'sortOrder', name: 'Pending', value: 'pending' },
-          { category: 'sortOrder', name: 'Rejected', value: 'rejected' },
-          { category: 'sortOrder', name: 'Soft Rejection', value: 'soft_rejection' },
-          { category: 'sortOrder', name: 'Revise', value: 'revise' },
-          { category: 'sortOrder', name: 'Pulled by User', value: 'userPulled' },
-          { category: 'sortOrder', name: 'Pulled by Admin', value: 'adminPull' },
-          { category: 'sortOrder', name: 'Accepted', value: 'accepted' },
-          { category: 'sortOrder', name: 'Published', value: 'published' }
-        ].map(function(status) {
-          return { status: status };
+          { auth: 'public', name: 'Received', value: 'received' },
+          { auth: 'public', name: 'Pending', value: 'pending' },
+          { auth: 'public', name: 'Rejected', value: 'rejected' },
+          { auth: 'private', name: 'Soft Rejection', value: 'soft_rejection', publicName: '' },
+          { auth: 'public', name: 'Revise', value: 'revise' },
+          { auth: 'public', name: 'Pulled by User', value: 'userPulled' },
+          { auth: 'private', name: 'Pulled by Admin', value: 'adminPull', publicName: '' },
+          { auth: 'public', name: 'Published', value: 'published' },
+          { auth: 'public', name: 'Accepted', value: 'accepted' }
+        ]
+        .map(function (status) {
+          return {
+            name: status.name,
+            value: status.value,
+            auth: status.auth
+          };
         });
       },
-
-      // listStatusesforUser: function listStatuses() {
-      //   return this.statuses = [
-      //     { category: 'sortOrder', name: 'Received', value: 'received' },
-      //     { category: 'sortOrder', name: 'Pending', value: 'pending' },
-      //     { category: 'sortOrder', name: 'Rejected', value: 'rejected' },
-      //     { category: 'sortOrder', name: 'Soft Rejection', value: 'soft_rejection' },
-      //     { category: 'sortOrder', name: 'Revise', value: 'revise' },
-      //     { category: 'sortOrder', name: 'Pulled by User', value: 'userPulled' },
-      //     { category: 'sortOrder', name: 'Pulled by Admin', value: 'adminPull' },
-      //     { category: 'sortOrder', name: 'Accepted', value: 'accepted' },
-      //     { category: 'sortOrder', name: 'Published', value: 'published' }
-      //   ].map(function(status) {
-      //     return { status: status };
-      //   });
-      // },
 
       listCategories: function listCategories() {
         return this.categories = [
@@ -63,9 +60,10 @@
           { category: 'sortOrder', name: 'Audio', value: 'audio' },
           { category: 'sortOrder', name: 'Photography', value: 'photography' },
           { category: 'sortOrder', name: 'This Was Here', value: 'this-was-here' }
-        ].map(function (category) {
-          return { category: category }
-        });
+        ];
+        // .map(function (category) {
+        //   return { category: category }
+        // });
       },
 
       listProjectSorts: function listProjectSorts() {
@@ -74,27 +72,21 @@
           { category: 'sortOrder', name: 'Title', value: 'title' },
           { category: 'sortOrder', name: 'Author Name', value: 'user.lastName' },
           { category: 'sortOrder', name: 'Submission Status', value: 'status' }
-        ].map(function (projectSort) {
-          return { projectSort: projectSort }
-        });
+        ];
       },
 
       listFeaturedProjects: function featuredProjects() {
         return this.featuredProjects = [
           { category: 'sortOrder', name: 'Featured', value: 'true' },
           { category: 'sortOrder', name: 'Not Featured', value: 'false' }
-        ].map(function (featuredProject) {
-          return { featuredProject }
-        });
+        ];
       },
 
       listYesNo: function listYesNo() {
         return this.yesNo = [
           { category: 'sortOrder', name: 'Yes', value: 'true' },
           { category: 'sortOrder', name: 'No', value: 'false' }
-        ].map(function (yesNo) {
-          return { yesNo }
-        });
+        ];
       }
 
     };
