@@ -62,9 +62,8 @@ const generateRandomPassphrase = () => {
 };
 
 const generateAuthToken = () => {
-  const authToken = uuid.v4() + '.' + new Date().getTime();
-  console.log('authToken: ', authToken);
-  return authToken;
+  return uuid.v4() + '.' + new Date().getTime();
+
 };
 
 /**

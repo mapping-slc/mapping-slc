@@ -1,20 +1,45 @@
 .dialogdemoBasicUsage #popupContainer {
-    position: relative; }
+  position: relative;
+}
 
 .dialogdemoBasicUsage .footer {
-    width: 100%;
-    text-align: center;
-    margin-left: 20px; }
+  width: 100%;
+  text-align: center;
+  margin-left: 20px;
+}
 
 .dialogdemoBasicUsage .footer, .dialogdemoBasicUsage .footer > code {
-    font-size: 0.8em;
-    margin-top: 50px; }
+  font-size: 0.8em;
+  margin-top: 50px;
+}
 
 .dialogdemoBasicUsage button {
-    width: 200px; }
+  width: 200px;
+}
 
 .dialogdemoBasicUsage div#status {
-    color: #c60008; }
+  color: #c60008;
+}
 
 .dialogdemoBasicUsage .dialog-demo-prerendered md-checkbox {
-    margin-bottom: 0; }
+  margin-bottom: 0;
+}
+
+md-toast.confirm-publish-success.md-top {
+  left: calc(50% - 125px);
+  //background: rgba(0,0,0,0.8);
+  .md-toast-content {
+    min-width: 350px;
+    min-height: 125px;
+    height: auto;
+    font-size: 2rem;
+  }
+}
+
+md-toast.confirm-success-toast {
+  div {
+    > ng-md-icon {
+      margin: 0 5%;
+    }
+  }
+}

@@ -21,17 +21,23 @@ let UserModifiedSchema = new Schema({
   modifiedAt: Date
 });
 
+
+const roleTypes = {
+  values: 'user blocked verificationRequired unregistered registered contributor admin superUser'.split(' '),
+  message: '`roleTypes` enum validator failed for path `{PATH}` with value `{VALUE}`'
+};
+
 /**
  * A Validation function for local strategy properties
  */
-var validateLocalStrategyProperty = function (property) {
+const validateLocalStrategyProperty = function (property) {
   return ((this.provider !== 'local' && !this.updated) || property.length);
 };
 
 /**
  * A Validation function for local strategy email
  */
-var validateLocalStrategyEmail = function (email) {
+const validateLocalStrategyEmail = function (email) {
   return ((this.provider !== 'local' && !this.updated) || validator.isEmail(email, { require_tld: false }));
 };
 
@@ -143,9 +149,9 @@ var UserSchema = new Schema({
   roles: {
     type: [{
       type: String,
-      enum: ['user', 'blocked', 'verificationRequired', 'unregistered', 'registered', 'contributor', 'admin', 'superUser']
+      enum: roleTypes
     }],
-    default: ['registered'],
+    default: 'registered',
     required: 'Please provide at least one role'
   },
   updated: {

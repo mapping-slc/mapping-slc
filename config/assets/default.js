@@ -39,6 +39,7 @@ module.exports = {
       js: [
         'public/lib/jquery/dist/jquery.js',
         'public/lib/jquery-migrate/jquery-migrate.min.js',
+        'public/lib/lodash/lodash.js',
         'public/lib/modernizr/modernizr.js',
         'public/lib/angular/angular.js',
         'public/lib/angular-resource/angular-resource.js',
@@ -63,14 +64,12 @@ module.exports = {
         'public/lib/owasp-password-strength-test/owasp-password-strength-test.js',
         'public/lib/rangy/rangy-core.js',
         'public/lib/angular-local-storage/dist/angular-local-storage.min.js',
-        // 'public/lib/froala-wysiwyg-editor/js/froala_editor.min.js',
         'public/lib/froala-wysiwyg-editor/js/froala_editor.min.js',
         'public/lib/classie/classie.js',
         'public/lib/moment/min/moment.js',
         'public/lib/xmlToJSON.js/lib/xmlToJSON.js',
         'public/lib/ng-file-upload/ng-file-upload-shim.js',
         'public/lib/ng-file-upload/ng-file-upload.js',
-        'public/lib/lodash/lodash.js',
         'public/lib/flexslider/jquery.flexslider-min.js',
         'public/lib/ng-password-strength/dist/scripts/ng-password-strength.min.js',
 

@@ -1,0 +1,18 @@
+md-input-container md-select#status,
+md-input-container md-select#category {
+  border-bottom: solid 2px #023a31;
+  width: 50%;
+  md-select-value {
+    span {
+      font-size: 1.7rem;
+    }
+  }
+}
+
+.project-create md-input-container md-select#status,
+.project-edit md-input-container md-select#status {
+  max-width: 350px;
+  margin-left: 15px;
+  width: 175px;
+  width: 110%;
+}

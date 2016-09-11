@@ -92,7 +92,6 @@ exports.create = (req, res) => {
  * Show the current Project
  */
 exports.read = (req, res) => {
-  console.log('here here `req.project`:\n', req.project);
   res.jsonp(req.project);
 };
 
@@ -101,6 +100,8 @@ exports.read = (req, res) => {
  * Update a Project
  */
 exports.update = (req, res) => {
+  console.log('req.body:\n', req.body);
+  console.log('req.body:\n', req.body.status);
   const query = Project.findOneAndUpdate(
       {_id: req.params.projectId},
       req.body,
@@ -108,6 +109,7 @@ exports.update = (req, res) => {
   ).exec();
 
   query.then(response => {
+    console.log('response:\n', response);
     return res.jsonp(response);
   })
   .catch(err => {
@@ -386,8 +388,8 @@ exports.markerData = function (req, res, next) {
  */
 let updateNewFeaturedProject = function (project) {
   project.featured = true;
-  let featuredProjectOptions = {new: true};
-  project.featuredBeginDate = Date.now();
+  let featuredProjectOptions = { new: true };
+  project.featuredBeginDate = moment.utc(Date.now());
   project.featuredEndDate = null;
 
   //setup new featured project variables
@@ -420,7 +422,7 @@ let updateOldFeaturedProject = () => {
     }
     if (featuredProjects.length === 3) {
       let oldProject = featuredProjects.pop();
-      oldProject.featuredEndDate = Date.now();
+      oldProject.featuredEndDate = moment.utc(Date.now());
       oldProject.featured = false;
 
       oldProject.save(function (err, updatedOldProject) {
@@ -441,9 +443,15 @@ let updateOldFeaturedProject = () => {
 };
 
 
+exports.updateFeatured = (req, res) => {
+
+};
+
+
 exports.updateFeaturedProjects = function (req, res) {
-  updateOldFeaturedProject();
-  updateNewFeaturedProject(req.body);
+  console.log('here!!!: ', req.body);
+  // updateOldFeaturedProject();
+  // updateNewFeaturedProject(req.body);
 };
 
 

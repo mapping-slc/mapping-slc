@@ -73,11 +73,11 @@ module.exports = function (app) {
   app.route('/api/v1/featured')
     .get(projects.getFeaturedProjects);
 
-  app.route('/api/v1/projects/:projectId/featured/false')
-    .put(projects.update);
-
-  app.route('/api/v1/projects/:projectId/featured/true')
+  app.route('/api/v1/projects/:projectId/featured')
     .put(projects.updateFeaturedProjects);
+
+  // app.route('/api/v1/projects/:projectId/featured/true')
+  //   .put(projects.updateFeaturedProjects);
   
   
   //mount the router on the app

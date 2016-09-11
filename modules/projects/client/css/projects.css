@@ -87,17 +87,6 @@ fieldset > div > div {
     margin-top: 3%;
 }
 
-/*ckEditor Styling*/
-.cke_wysiwyg, .cke_chrome, #story.cke_1 .cke_chrome, #cke_story {
-    /*border-color: #023A31;*/
-    border-color: rgb(2, 58, 49);
-
-}
-
-.ck-crazy {
-    border-color: blue;
-}
-
 .view-projects div.pull-right .btn {
     margin-top: 13%;
     top: 13%;
@@ -316,19 +305,6 @@ project-status-user-info edit-profile .form-group {
 
 }
 
-md-input-container md-select#status {
-  border-bottom: solid 7px #023a31;
-}
-
-.project-create md-input-container md-select#status,
-.project-edit md-input-container md-select#status {
-  max-width: 350px;
-  margin-left: 15px;
-  width: 175px;
-  width: 110%;
-}
-
-
 .project-uploader.ng-show, .project-uploader.ng-hide {
     -webkit-transition: all .5s ease;
     -moz-transition: all .5s ease;
@@ -362,9 +338,4 @@ md-input-container md-select#status {
 #facebook ._2pi8 ._5lm5._2pi3._3-8y {
     display: none;
     font-size: 2px;
-}
-
-
-.list-projects md-content {
-    background-color: transparent;
 }

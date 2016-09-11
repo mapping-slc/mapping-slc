@@ -18,3 +18,14 @@
 
 .dialogdemoBasicUsage .dialog-demo-prerendered md-checkbox {
   margin-bottom: 0; }
+
+md-toast.confirm-publish-success.md-top {
+  left: calc(50% - 125px); }
+  md-toast.confirm-publish-success.md-top .md-toast-content {
+    min-width: 350px;
+    min-height: 125px;
+    height: auto;
+    font-size: 2rem; }
+
+md-toast.confirm-success-toast div > ng-md-icon {
+  margin: 0 5%; }

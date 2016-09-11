@@ -88,10 +88,7 @@
     "shortid": "^2.2.6",
     "socket.io": "~1.4.5",
     "swig": "~1.4.2",
-    "tinify": "^1.1.1",
-    "underscore": "^1.8.3",
     "validator": "^5.1.x",
-    "vimeo": "^1.1.4",
     "webpack": "^1.13.2",
     "webpack-stream": "^3.2.0",
     "xmltojson": "^1.1.0"

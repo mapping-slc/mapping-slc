@@ -3,11 +3,11 @@
 /**
  * Module dependencies.
  */
-var mongoose = require('mongoose'),
+const mongoose = require('mongoose'),
   Schema = mongoose.Schema,
   mongoosastic = require('mongoosastic');
 
-var ImageGallerySchema = new Schema({
+const ImageGallerySchema = new Schema({
   imageUrl: String,
   imageId: String,
   thumbImageUrl: String,
@@ -28,7 +28,7 @@ var ImageGallerySchema = new Schema({
   metadata: Object
 });
 
-var DocumentGallerySchema = new Schema({
+const DocumentGallerySchema = new Schema({
   documentName: String,
   documentSize: Number,
   documentTags: Array,
@@ -44,10 +44,15 @@ var DocumentGallerySchema = new Schema({
  * @prop modifiedBy {string}: userId of user who edited document
  * @prop modifiedAt {date}: timestamp that records when document was modified
  */
-let ModifiedSchema = new Schema({
+const ModifiedSchema = new Schema({
   modifiedBy: String,
   modifiedAt: Date
 });
+
+const statusTypes = {
+  values: 'received pending rejected soft_rejection revise accepted userPulled staffPulled published edit'.split(' '),
+  message: 'enum validator failed for path `{PATH}` with value `{VALUE}`'
+};
 
 /**
  *
@@ -64,7 +69,7 @@ var ProjectSchema = new Schema({
   status: {
     type: [{
       type: String,
-      enum: ['received', 'pending', 'rejected', 'soft_rejection', 'revise', 'accepted', 'userPulled', 'staffPulled', 'published', 'edit']
+      enum: statusTypes
     }],
     default: 'received'
   },

@@ -54,7 +54,7 @@
         console.log('$scope.tempUser INSIDE FN:\n', $scope.tempUser);
         console.log('$scope.tempUser._id: ', $scope.tempUser.email);
         $http.post(`/api/v1/auth/signup/tempUsers/emails/${$scope.tempUser.email}/resend`, $scope.tempUser)
-        .then(function resendSuccess(resolved) {
+        .then(function resendSuccess() {
           callModal();
         })
         .catch(function resendError(rejected) {
@@ -96,7 +96,7 @@
           .ok('Ok')
         )
         .then(function () {
-          $state.go('home')
+          $state.go('home');
         });
       };
 
@@ -110,29 +110,11 @@
           return false;
         }
         $http.post('/api/v1/admins/recaptcha', { recaptchaResponse: $scope.response })
-        .then(function recaptchaSuccess(resolved) {
+        .then(function recaptchaSuccess() {
           return $http.post('/api/v1/auth/signup', $scope.tempUser);
         })
-        .then(function createTempUserSuccess(resolved) {
+        .then(function createTempUserSuccess() {
           callModal();
-          // emailLink($scope.tempUser.email);
-          // var modalText = `<h3>Almost done!</h3>` +
-          //  `<p>Please check your email to complete the registration.</p>` +
-          //  `<br />` +
-          //  '<p>Go to <a href="' + emailProvider.url + '" target="_blank">' + emailProvider.name + '</a></p>';
-          // $mdDialog.show(
-          //   $mdDialog.confirm()
-          //   .parent(angular.element(document.querySelector('#popupContainer')))
-          //   .clickOutsideToClose(false)
-          //   .escapeToClose(false)
-          //   .htmlContent(modalText)
-          //   .ariaLabel('Check email to complete registration')
-          //   .ok('Ok')
-          // )
-          // .then(function () {
-          //   $state.go('home')
-          // });
-
           }, function errorCallback(rejected) {
           console.error('error `rejected`\n', rejected);
             $scope.serverError = rejected.data.message;

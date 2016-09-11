@@ -9,31 +9,24 @@
 
     <div class="main-content-outer">
 
-      <!--<section data-ng-controller="ProjectsController" class="main-content-inner">-->
       <section data-ng-controller="ProjectsController" data-ng-init="findOne()" class="main-content-inner">
 
         <div class="admin">
           <div class="admin-projects" layout="column">
 
             <div layout="">
-              <md-button class="md-raised" ui-sref="admin.dashboard">
-                Admin Home Page
-              </md-button>
-                <md-button class="md-raised" ui-sref="admin.adminProjectsQueue">
-                Admin Project Page
-                </md-button>
-                  <md-button class="md-raised" ui-sref="viewProjectPreview({projectId: project.id})">
-                Go to Preview
-                  </md-button>
-              <md-button class="md-raised" ui-sref="viewProject({projectId: project.id})">
-                Go to Project
-              </md-button>
+              <md-button class="md-raised" aria-label="admin home page" ui-sref="admin.dashboard"><ng-md-icon icon="home"></ng-md-icon>Admin Home Page</md-button>
+              <md-button class="md-raised" aria-label="admin project page" ui-sref="admin.adminProjectsQueue"><ng-md-icon icon="view_list"></ng-md-icon>Admin Project Page</md-button>
+              <md-button class="md-raised" aria-label="view project preview" ui-sref="viewProjectPreview({projectId: project.id})"><ng-md-icon icon="find_in_page"></ng-md-icon>View Preview</md-button>
+              <md-button data-ng-if="project.status==='published'" class="md-raised" aria-label="view project" ui-sref="viewProject({projectId: project.id})"><ng-md-icon icon="find_in_page"></ng-md-icon>View Project</md-button>
             </div>
 
             <md-content  layout="">
-              <md-button class="md-raised" data-ng-show="!toggleEdit" data-ng-click="toggleEdit = !toggleEdit"><ng-md-icon icon="create"></ng-md-icon></md-button>
-              <md-button data-ng-show="toggleEdit" data-ng-click="toggleEditFn(0)" class="md-raised btn-warning">Cancel</md-button>
-              <md-button data-ng-show="toggleEdit" type="submit" data-ng-click="toggleEditFn(0)" class="md-raised">Save</md-button>
+              <md-button class="md-raised" data-ng-show="!toggleEdit" aria-label="edit" data-ng-click="toggleEdit = !toggleEdit"><ng-md-icon icon="mode_edit"></ng-md-icon></md-button>
+              <md-button data-ng-show="toggleEdit" data-ng-click="toggleEditFn(0)" class="md-raised btn-warning"><ng-md-icon icon="cancel"></ng-md-icon>Cancel</md-button>
+              <md-button class="md-raised" data-ng-show="toggleEdit" type="submit" data-ng-click="toggleEditFn(0)" class="md-raised"><ng-md-icon icon="save"></ng-md-icon>Save</md-button>
+              <md-button class="md-raised btn-warning" layout-align="end center" aria-label="delete project" data-ng-click="remove()"><ng-md-icon icon="delete_forever"></ng-md-icon></md-button>
+
             </md-content>
 
           <div>
@@ -41,21 +34,11 @@
           </div>
 
 
-            <div class="row projects-profile">
-              <div class="col-xs-12">
-                <form class="form-horizontal" data-ng-submit="updateProject(project.$valid, toggleId)" novalidate>
-                  <fieldset>
-                    <project-tabs></project-tabs>
-                  </fieldset>
-                </form>
-              </div>
+            <div class="row projects-profile" layout="">
+                <project-tabs flex="100"></project-tabs>
             </div>
 
-            <div class="pull-right">
-              <a class="btn btn-main grow btn-warning" data-ng-click="remove();">
-                <i class="glyphicon glyphicon-trash"></i>
-              </a>
-            </div>
+
 
           </div>
         </div>

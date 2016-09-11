@@ -15,9 +15,7 @@
           <div class="admin-messages">
 
             <div class="admin-nav">
-              <a class="btn btn-main grow" ui-sref="admin.dashboard">
-                Admin Home Page
-              </a>
+              <md-button class="md-raised" aria-label="admin home page" ui-sref="admin.dashboard"><ng-md-icon icon="home"></ng-md-icon>Admin Home Page</md-button>
             </div>
 
             <div class="page-header">
@@ -44,11 +42,9 @@
               </small>
             </div>
 
-            <div class="pull-right" data-ng-show="isAdmin.user">
-              <a class="btn btn-primary btn-warning" data-ng-click="remove();">
-                <i class="glyphicon glyphicon-trash"></i>
-              </a>
-            </div>
+            <!--<div layout="">-->
+              <md-button data-ng-show="isAdmin.user" class="md-raised btn-warning" layout-align="end center" aria-label="delete" data-ng-click="remove()"><ng-md-icon icon="delete_forever"></ng-md-icon></md-button>
+            <!--</div>-->
 
           </div>
         </div>
