@@ -23,6 +23,7 @@ html, body {
 
 body {
     overflow-x: auto;
+    font-size: 1.7rem;
 }
 
 /* use `optimizeLegibility` on desktop only - mobile performance issues */

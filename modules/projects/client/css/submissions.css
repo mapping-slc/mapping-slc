@@ -1,0 +1,28 @@
+div.submission-details h1 {
+  margin-bottom: 1rem; }
+
+div.submission-details p {
+  margin: 1em 0; }
+
+div.submission-details > div.ideas {
+  margin: 4rem 0 0 4rem;
+  border: 3px solid #023A31;
+  border-radius: 10px;
+  padding: 5%; }
+
+div.submission-details div md-button.md-btn-border {
+  padding: 1em;
+  margin-bottom: 2rem; }
+
+div.submission-details .md-btn-border {
+  font-size: 2.25rem;
+  text-transform: capitalize;
+  padding: 0.5em 1em;
+  margin-bottom: 2rem; }
+
+.project-create .project-submission-categories {
+  bottom: 2.8rem;
+  position: absolute; }
+
+.project-create project-uploader section.project-uploader {
+  margin-left: 4rem; }

@@ -9,6 +9,13 @@ angular.module('projects').config(['$stateProvider',
       url: '/projects',
       templateUrl: 'modules/projects/client/views/list-projects.client.view.html'
     })
+    .state('submissionDetails', {
+      url: '/projects/submission-details',
+      templateUrl: 'modules/projects/client/views/submission-details-client-view.html',
+      data: {
+        pageTitle: 'Submission Details'
+      }
+    })
     .state('createProject', {
       url: '/projects/create',
       templateUrl: 'modules/projects/client/views/create-project.client.view.html',
@@ -20,16 +27,10 @@ angular.module('projects').config(['$stateProvider',
     })
     .state('viewProjectPreview', {
       url: '/projects/:projectId/preview',
-      templateUrl: 'modules/projects/client/views/view-project.client.view.html'
-      //templateUrl: 'modules/projects/client/views/view-project-preview.client.view.html'
-    })
-    .state('editProject', {
-      url: '/projects/:projectId/edit',
-      templateUrl: 'modules/projects/client/views/edit-project.client.view.html',
-      data: {
-        authenticate: true,
-        roles: ['contributor', 'admin', 'superUser']
-      }
+      templateUrl: 'modules/projects/client/views/view-project.client.view.html',
+      // resolve: {
+      //   checkProjectStatus: checkProjectStatus
+      // }
     })
     .state('projectStatus', {
       url: '/projects/:projectId/status',
@@ -53,10 +54,6 @@ angular.module('projects').config(['$stateProvider',
         }
       },
       templateUrl: 'modules/projects/client/views/project-for-submission.client.view.html'
-    })
-    .state('blank', {
-      url: '/blank',
-      templateUrl: 'modules/projects/client/views/blank.html'
     });
   }
 ]);

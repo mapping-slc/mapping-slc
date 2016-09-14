@@ -93,27 +93,27 @@
 
 
         <!-- Row #6 -->
-        <div layout-gt-xs="row" ng-if="userToEdit.roles[0] === 'admin' || user.associatedProjects">
-          <md-input-container flex="90">
-            <label>Bio</label>
-            <textarea data-ng-model="userToEdit.bio" md-maxlength="150" rows="5" md-select-on-focus=""></textarea>
-          </md-input-container>
-        </div>
-
-        <!-- Row #7 -->
         <div layout-gt-xs="row" ng-if="userToEdit.roles[0] !== 'userToEdit' && isAdminPanel">
-          <md-input-container flex="40">
+          <md-input-container flex="40" ng-if="$scope.user.roles[0]==='superadmin'">
             <label>Username</label>
             <input type="text" data-ng-model="userToEdit.username">
           </md-input-container>
 
           <md-input-container class="md-block" flex-gt-sm="">
-            <label>Role</label>
+            <label>Role: {{userToEdit.roles[0]}}</label>
             <md-select ng-model="userToEdit.roles">
-              <md-option ng-repeat="role in roles" value="{{role}}">
-                {{role}}
+              <md-option ng-repeat="role in roles" value="{{role.value}}">
+                {{role.name}}
               </md-option>
             </md-select>
+          </md-input-container>
+        </div>
+
+        <!-- Row #7 -->
+        <div layout-gt-xs="row" ng-if="userToEdit.roles[0] === 'admin' || user.associatedProjects">
+          <md-input-container flex="90">
+            <label>Bio</label>
+            <textarea data-ng-model="userToEdit.bio" md-maxlength="150" rows="5" md-select-on-focus=""></textarea>
           </md-input-container>
         </div>
 

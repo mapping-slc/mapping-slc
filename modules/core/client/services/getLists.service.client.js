@@ -25,9 +25,20 @@
       },
 
       listRoles: function listRoles() {
-        return this.roles = ['user', 'blocked', 'unregistered', 'registered', 'contributor', 'admin', 'superUser']
+        return this.roles = [
+          { name: 'User', value: 'user' },
+          { name: 'Blocked', value: 'blocked' },
+          { name: 'Unregistered', value: 'unregistered' },
+          { name: 'Registered', value: 'registered' },
+          { name: 'Contributor', value: 'contributor' },
+          { name: 'Admin', value: 'admin' },
+          { name: 'Super Admin', value: 'superAdmin' },
+        ]
         .map(function (role) {
-          return {userRole: role};
+          return {
+            name: role.name,
+            value: role.value
+          };
         });
       },
 
