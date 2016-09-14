@@ -16,7 +16,6 @@ let Promise = require('bluebird'),
     _ = require('lodash'),
     multiparty = require('multiparty'),
     AWS = require('aws-sdk'),
-    tinify = Promise.promisifyAll(require('tinify')),
     shortId = require('shortid'),
     moment = require('moment'),
     mediaUtilities = require('./projects.server.utilities.js');
@@ -124,7 +123,7 @@ exports.hasAdminAuthorization = (req, res, next) => {
 // exports.configImageStream = (req, res, next) => {
 exports.configImageStream = (req, res) => {
   console.log('req:\n', req, '\n\n\n');
-  
+
   let isDefaultImage = (req.headers['default-image'] === 'true');
   let imageTags = req.headers['tags'].split(',%,%,%'); //split with a symbol that won't be used in any tag so that i can parse back into an array later
   let fileName;
@@ -143,13 +142,13 @@ exports.configImageStream = (req, res) => {
     bucket: req.headers['bucket']
   };
   fileData.fileExt = mediaUtilities.getFileExt(fileData.type, fileData.name).extension;
-  
+
   // let source = mediaUtilities.setSourceId();
   // let imageUrlRoot = 'https://s3-' + s3Config.region + '.amazonaws.com/' + s3Config.bucket + '/' + source.s3Directory + '/' + source.sourceId;
   let imageUrlRoot = 'https://s3-' + s3Config.region + '.amazonaws.com/' + s3Config.bucket + '/' + s3Config.directory[1].path + '/' + req.params.projectId;
   fileData.fullImageUrl = imageUrlRoot + '/' + fileData.fileId + '.' + fileData.fileExt;
   fileData.thumbImageUrl = imageUrlRoot + '/thumb_' + fileData.fileId + '.' + fileData.fileExt;
-  
+
   fileData.s3Obj = new Object({
     header: { 'x-amz-decoded-content-length': fileData.size },
     region: 'us-west-1',
@@ -166,18 +165,18 @@ exports.configImageStream = (req, res) => {
       isDefault: fileData.isDefaultImage.toString() || 'false',
     }
   });
-  
+
   // req.body.fileData = fileData;
   // next();
   let awsFileName = fileData.fileId + '.' + fileData.fileExt;
   console.log('awsFileName:\n', awsFileName);
   let writeFile = fs.createWriteStream(awsFileName);
   fileData.s3Obj.Body = req.pipe(writeFile);
-  
+
   console.log('hereeeeeeeee!');
   console.log('fileData.s3Obj.Key: ', fileData.s3Obj.Key);
   console.log('\n\n\nfileData.s3Obj.Body: ', fileData.s3Obj.Body);
-  
+
   s3.uploadAsync(fileData.s3Obj)
   .then(response => {
     console.log('response:\n', response);
@@ -190,7 +189,7 @@ exports.configImageStream = (req, res) => {
 exports.putImageStream = (req, res, next) => {
   let writeFile = fs.createWriteStream(req);
   let file = req.pipe(writeFile);
-  
+
   s3.uploadAsync(file)
   .then(response => {
     console.log('response:\n', response);
@@ -210,7 +209,7 @@ exports.putImageStream = (req, res, next) => {
 exports.transformHeaders = (req, res, next) => {
   let isDefaultImage = (req.headers['default-image'] === 'true');
   let imageTags = req.headers['tags'].split(',%,%,%'); //split with a symbol that won't be used in any tag so that i can parse back into an array later
-  
+
   let preConfigObj = {
     files: {
       file: [{

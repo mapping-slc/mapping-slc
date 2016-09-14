@@ -73,13 +73,26 @@
     }
 
 }
-
+@media (max-width: 768px) {
+  .main-content-outer {
+  width: 80%;
+  margin: 0 auto;
+  padding: 3%;
+  margin-top: 10%;
+  }
+}
 @media (max-height: 540px) {
     .sidebar {
         height: 75%;
     }
-}
 
+}
+@media (max-width: 425px) {
+  .main-content-outer {
+    width: 40%;
+    padding: 0 3%;
+  }
+}
 @media (max-height: 1079px) {
     .core .main-text p {
         font-size: 1.2em;
