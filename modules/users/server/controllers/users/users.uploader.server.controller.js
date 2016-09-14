@@ -33,7 +33,6 @@ let awsS3Config = {
   region: 'us-west-1'
 };
 
-let tinify = Promise.promisifyAll(require('tinify'));
 let s3 = new AWS.S3(awsS3Config);
 Promise.promisifyAll(s3);
 mongoose.Promise = Promise;
