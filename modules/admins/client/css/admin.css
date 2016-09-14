@@ -372,12 +372,6 @@ md-select.md-default-theme .md-select-value.md-select-placeholder, md-select .md
     padding: 4px;
 }
 
-.project-create md-input-container {
-    margin: 5px 0;
-    max-width: 350px;
-    width: 110%;
-}
-
 .md-input-has-value.md-input-focused label, .md-input-has-value label {
     color: #000000;
     transform: translate3d(0, -6px, 0) scale(1.05)

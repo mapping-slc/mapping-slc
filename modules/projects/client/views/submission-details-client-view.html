@@ -1,0 +1,50 @@
+<div id="main-menu" class="main-menu">
+  <main-menu></main-menu>
+</div>
+
+<section class="content background" data-ng-controller="RandomMapController"
+         ng-style="{'background-image': 'url(' + staticMap.mapUrl + ')', 'background-size' : 'cover' }"
+         data-ng-class="{'page-view-menu-open': toggleSecondMenu}">
+
+  <section class="container">
+    <div class="main-logo" ui-sref="home"></div>
+
+    <div class="main-content-outer">
+      <section data-ng-controller="ProjectsController" class="main-content-inner">
+
+        <div class="submission-details">
+
+          <h1>Submission Details</h1>
+
+          <p>Mapping Salt Lake City invites everyone to add their voices to the mix.</p>
+
+          <p>Please also include all necessary personal or archival photos to accompany your entry. All entries should be submitted to our editors via our online Project Submission form.</p>
+
+          <p>We review all entries for Mapping Salt Lake City before publishing them live on the site. We accept reprints, so long as you own the copyright. Sadly, we cannot yet pay for material.</p>
+
+            <div layout="" layout-align="center center">
+              <md-button class="md-raised md-primary md-btn-border" ui-sref="createProject">Submit Now</md-button>
+            </div>
+
+            <div class="ideas">
+              <h3>If you'd like some ideas for projects</h3>
+              <ul>
+                <li>Oral histories or interviews with Salt Lake City residents</li>
+                <li>Essays, including video, multimedia, graphic (comic-book), photo, and audio/sound essays</li>
+                <li>Essays on space and place, including environment and architecture</li>
+                <li>Essays on immigration, race, religion, politics or culture as it relates to Salt Lake City</li>
+                <li>Personal or historical maps made with any interactive mapping technology (we may be able to provide limited assistance with the technology. Please contact us for more info.)</li>
+                <li>Walking tours</li>
+                <li>Personal essays that specifically relate to Salt Lake City</li>
+                <li>Essays/interviews/projects about the city's art/music/creative scene</li>
+                <li>Profiles of people that are or who have been active in changing the city</li>
+              </ul>
+
+              <p>We are also looking for more entries to our <span>This Was Here</span> archive. <span>This Was Here</span> attempts to retrieve, reconstruct, and revive these lost sites, hidden landmarks, and overlooked figures in an attempt to fill the gaps in Salt Lake's complex history. To write for This Was Here, send us your images, letters, documents, and short (between 250 – 500 words) anecdotes about buildings, events, people or landmarks in Salt Lake City.</p>
+
+          </div>
+        </div>
+      </section>
+    </div>
+  </section>
+</section>

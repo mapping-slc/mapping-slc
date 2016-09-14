@@ -21,7 +21,6 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
     $scope.projectFiles = [];
     $scope.uploading = false;
 
-
     $scope.initSubmissionStatus = function () {
       $scope.findOne();
     };
